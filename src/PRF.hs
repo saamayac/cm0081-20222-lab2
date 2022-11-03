@@ -5,15 +5,32 @@ import Numeric.Natural ( Natural )
 import Test.QuickCheck ( Arbitrary (..), arbitrarySizedNatural, shrink)
 
 -- data structures
+-- This mean that natural numbers are represented in a linked list, and
+-- the type could be either Zero or Natural succesor
 data Nat = Zero | Succ Nat
     deriving ( Eq , Show )
 
 ------------------------------------------------------------------------------
 -- basic funtions
+--This function fodls over a Nat, and 
+
 recNat :: a -> ( Nat -> a -> a ) -> Nat -> a
+-- In here recNat just ignores the second argumente and returns a
 recNat a _ Zero = a
+-- recNat a h counts gradually to the final zero, calling h on every 
+-- intermediate Succ and replacing Zero with a
 recNat a h ( Succ n ) = h n ( recNat a h n )
 
+------------------------------------------------------------------------------
+
+-- Fuction implementations
+-- We define a basic PRF and then we define it again with recNat, in that way 
+-- when using quickCheck we could compare both results and see if they are equal
+
+------------------------------------------------------------------------------
+--Most of the implemented PRF recNat fuctions ignore their first argument, and 
+-- return what the function is supposed  to return, and all of them have type
+-- Nat -> Nat
 ------------------------------------------------------------------------------
 -- Zero funtion
 zeroP :: Nat -> Nat
