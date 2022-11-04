@@ -12,34 +12,33 @@ data Nat = Zero | Succ Nat
 
 ------------------------------------------------------------------------------
 -- basic funtions
---This function fodls over a Nat, and 
+--This function fodls over a Nat
 
 recNat :: a -> ( Nat -> a -> a ) -> Nat -> a
--- In here recNat just ignores the second argumente and returns a
+
 recNat a _ Zero = a
--- recNat a h counts gradually to the final zero, calling h on every 
--- intermediate Succ and replacing Zero with a
+-- In here recNat just ignores the second argumente and returns a
+
 recNat a h ( Succ n ) = h n ( recNat a h n )
+-- recNat applies the lambda fuction to n and the recursive call recNat a h n
 
 ------------------------------------------------------------------------------
 
 -- Fuction implementations
--- We define a basic PRF and then we define it again with recNat, in that way 
--- when using quickCheck we could compare both results and see if they are equal
+-- We define two functions: basic PRF (without recNat) and PRF with recNat, 
+--  This way when using quickCheck we could compare both results 
+--  and see if they are equal
+-- Most of the PRF recNat fuctions ignore their first argument, and 
+--  return the expected output.
 
-------------------------------------------------------------------------------
---Most of the implemented PRF recNat fuctions ignore their first argument, and 
--- return what the function is supposed  to return, and all of them have type
--- Nat -> Nat
-------------------------------------------------------------------------------
--- Zero funtion
+-- Zero function
 zeroP :: Nat -> Nat
 zeroP _ = Zero
 
 zeroR :: Nat -> Nat
 zeroR n = recNat Zero (\ _ _ -> Zero) n
 
--- succesor funtion
+-- succesor function
 succP :: Nat -> Nat
 succP n = Succ n
 
@@ -53,7 +52,7 @@ idP n = n
 idR :: Nat -> Nat
 idR n = recNat n (\ _ y -> y ) Zero
 
--- predecesor funtion
+-- predecesor function
 predP :: Nat -> Nat
 predP Zero = Zero
 predP (Succ n) =  n
