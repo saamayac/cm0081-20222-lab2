@@ -1,6 +1,6 @@
 module PRF ( Nat(..), zeroR, zeroP, succR, succP, idR, idP, predR, predP, sgR, sgP ) where
 
--- libraries imports
+-- Global imports
 import Numeric.Natural ( Natural )
 import Test.QuickCheck ( Arbitrary (..), arbitrarySizedNatural, shrink)
 
