@@ -23,12 +23,11 @@ recNat a h ( Succ n ) = h n ( recNat a h n )
 -- recNat applies the lambda fuction to n and the recursive call recNat a h n
 
 ------------------------------------------------------------------------------
-
 -- Fuction implementations
--- We define two functions: basic PRF (without recNat) and PRF with recNat, 
---  This way when using quickCheck we could compare both results 
+-- We define two functions: basic PRF (without recNat) and PRF with recNat,
+--  This way when using quickCheck we could compare both results
 --  and see if they are equal
--- Most of the PRF recNat fuctions ignore their first argument, and 
+-- Most of the PRF recNat fuctions ignore their first argument, and
 --  return the expected output.
 
 -- Zero function
